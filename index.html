@@ -158,12 +158,19 @@
       padding: 0;
       margin: 0;
       box-sizing: border-box;
-      align-content: center;
-      flex-wrap: wrap;
       border-top: none;
       background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2a2a2a, #1a1a1a);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+    }
+    
+    #particles {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .hero::before {
@@ -692,40 +699,42 @@
 <body>
   <!-- ===== HERO SECTION ===== -->
   <section class="hero" id="home">
-    <canvas id="particles"></canvas>
-    <div class="hero-content">
-      <div class="hero-icon" data-animate="fade-up" style="animation-delay: 0.2s">
-        <img src="https://data.cryptoninjapartners.com/images/22732.png" alt="Pontamaru_18" width="120" height="120" loading="lazy">
-      </div>
-      <h1 class="hero-title" data-animate="fade-up">ぽんたまる</h1>
-      <div class="hero-subtitle" data-animate="fade-up" style="animation-delay: 0.3s">
-        <p>FiNANCiE</p>
-        <p>CNPトレカ チャンネルリーダー</p>
-      </div>
-      <div class="hero-buttons">
-        <a href="https://x.com/Pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.4s" aria-label="X（旧Twitter）をフォロー">
-          <div class="btn-flip-front">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
-  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L19.336 1.154h-.436zm-2.67 19.693h2.039L6.486 3.24H4.298L16.23 20.846z"/>
-</svg>
-            <span style="margin-left: 8px">Xをフォロー</span>
-          </div>
-          <div class="btn-flip-back">
-            <span>フォローする</span>
-          </div>
-        </a>
-        <a href="https://note.com/pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.6s" aria-label="note記事を読む">
-          <div class="btn-flip-front">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-            <span style="margin-left: 8px">noteを読む</span>
-          </div>
-          <div class="btn-flip-back">
-            <span>記事を読む</span>
-          </div>
-        </a>
+    <div class="hero">
+      <canvas id="particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+      <div class="hero-content">
+        <div class="hero-icon" data-animate="fade-up" style="animation-delay: 0.2s">
+          <img src="https://data.cryptoninjapartners.com/images/22732.png" alt="Pontamaru_18" width="120" height="120" loading="lazy">
+        </div>
+        <h1 class="hero-title" data-animate="fade-up">ぽんたまる</h1>
+        <div class="hero-subtitle" data-animate="fade-up" style="animation-delay: 0.3s">
+          <p>FiNANCiE</p>
+          <p>CNPトレカ チャンネルリーダー</p>
+        </div>
+        <div class="hero-buttons">
+          <a href="https://x.com/Pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.4s" aria-label="X（旧Twitter）をフォロー">
+            <div class="btn-flip-front">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L19.336 1.154h-.436zm-2.67 19.693h2.039L6.486 3.24H4.298L16.23 20.846z"/>
+              </svg>
+              <span style="margin-left: 8px">Xをフォロー</span>
+            </div>
+            <div class="btn-flip-back">
+              <span>フォローする</span>
+            </div>
+          </a>
+          <a href="https://note.com/pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.6s" aria-label="note記事を読む">
+            <div class="btn-flip-front">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span style="margin-left: 8px">noteを読む</span>
+            </div>
+            <div class="btn-flip-back">
+              <span>記事を読む</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
