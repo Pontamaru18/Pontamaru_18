@@ -29,14 +29,22 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.6;
-      overflow-x: hidden;
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 1.6;
+      color: #fff;
+      background-color: #0a0a0a;
+      padding: 0;
+      margin: 0;
+      position: relative;
     }
 
     h1, h2, h3, .heading {
@@ -160,10 +168,14 @@
       box-sizing: border-box;
       align-content: center;
       flex-wrap: wrap;
-      border-top: none;
+      border: none;
       background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2a2a2a, #1a1a1a);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
     }
 
     .hero::before {
@@ -182,14 +194,13 @@
       position: relative;
       z-index: 2;
       max-width: 1000px;
-      width: 90%;
-      margin: 0 auto;
-      padding: 40px 20px;
+      width: 100%;
+      margin: 0;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      align-items: center;
     }
     
     .hero-icon {
