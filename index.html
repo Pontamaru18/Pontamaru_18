@@ -155,13 +155,14 @@
       position: relative;
       overflow: hidden;
       text-align: center;
-      padding: 0;
+      padding: 80px 0;
       margin: 0;
       box-sizing: border-box;
       border-top: none;
       background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2a2a2a, #1a1a1a);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+      width: 100%;
     }
     
     #particles {
@@ -188,28 +189,42 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 1000px;
-      width: 90%;
+      max-width: 1200px;
+      width: 95%;
       margin: 0 auto;
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      align-items: center;
+      min-height: calc(100vh - 160px);
+    }
+    
+    @media (min-width: 1400px) {
+      .hero-content {
+        max-width: 1400px;
+      }
     }
     
     .hero-icon {
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 3px solid var(--color-gold);
-      margin: 0 auto 30px;
+      margin: 0 auto 20px;
       object-fit: cover;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       z-index: 3;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-icon {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 30px;
+      }
     }
 
     .hero-icon::after {
@@ -256,14 +271,22 @@
     }
 
     .hero-subtitle {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       color: #fff;
-      margin: 1rem 0 2.5rem;
-      line-height: 1.8;
+      margin: 0.5rem 0 2rem;
+      line-height: 1.6;
       font-weight: 300;
-      max-width: 700px;
+      max-width: 800px;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       position: relative;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 1.3rem;
+        margin: 1rem 0 2.5rem;
+        line-height: 1.8;
+      }
     }
 
     .hero-subtitle span {
@@ -280,12 +303,20 @@
 
     .hero-buttons {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 3rem;
+      margin-top: 2rem;
       position: relative;
       z-index: 2;
+      width: 100%;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-buttons {
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
     }
 
     /* Card Flip Button Effect */
