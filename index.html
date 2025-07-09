@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CNP TCG 王者LP">
+  <title>Pontamaru_18 - TRADING CARD KING</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE STYLES ===== */
+    :root {
+      --color-bg: #0E0E0E;
+      --color-gold: #F5D300;
+      --color-accent: #E63946;
+      --color-text: #FFFFFF;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2, h3, .heading {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, #F5D300, #FFE55C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #f5d300, #ffea00, #f5d300);
+      background-size: 200% 200%;
+      z-index: -1;
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+      animation: gradientBG 3s ease infinite;
+    }
+
+    .btn-primary {
+      background: var(--color-gold);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(245, 211, 0, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-gold);
+      border: 2px solid var(--color-gold);
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(245, 211, 0, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-gold);
+      border: 2px solid var(--color-gold);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      align-content: center;
+      flex-wrap: wrap;
+      border-top: none;
+      background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2a2a2a, #1a1a1a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+      z-index: 1;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-icon {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid var(--color-gold);
+      margin: 0 auto 30px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-icon::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 2px dashed var(--color-gold);
+      animation: rotate 20s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-icon:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 50px rgba(245, 211, 0, 0.3);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      margin: 0 0 1.5rem 0;
+      background: linear-gradient(135deg, #F5D300, #FFE55C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+      line-height: 1.1;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 1rem 0 2.5rem;
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 700px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .hero-subtitle span {
+      display: block;
+      margin: 0.5rem 0;
+      font-weight: 500;
+      color: #f5d300;
+      font-size: 1.1em;
+    }
+
+    .hero-subtitle p {
+      margin: 0.5rem 0;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Card Flip Button Effect */
+    .btn-flip {
+      perspective: 1000px;
+      width: 200px;
+      height: 50px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .btn-flip:hover {
+      transform: rotateY(180deg);
+    }
+
+    .btn-flip-front,
+    .btn-flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+    }
+
+    .btn-flip-front {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .btn-flip-back {
+      background: var(--color-accent);
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+      background-color: #0a0a0a;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245, 211, 0, 0.2), transparent);
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (min-width: 768px) {
+      .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 3rem auto 0;
+      }
+    }
+
+    .card {
+      background: rgba(26, 26, 26, 0.8);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(245, 211, 0, 0.15);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-link:hover {
+      transform: translateY(-8px);
+    }
+    
+    .card-link:hover .card {
+      border-color: var(--color-gold);
+      background: rgba(30, 30, 30, 0.95);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-link:hover .card::before {
+      opacity: 1;
+    }
+    
+    .card-icon {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon svg {
+      width: 48px;
+      height: 48px;
+      color: var(--color-gold);
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1.25rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.75rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1.25rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.75rem;
+    }
+    
+    .card p {
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+    
+
+    
+    .external-link-note {
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: var(--color-gold);
+      opacity: 0.9;
+      padding-top: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(245, 211, 0, 0.2);
+      border-color: rgba(245, 211, 0, 0.3);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245, 211, 0, 0.1);
+      border-radius: 50%;
+    }
+
+    .card h3 {
+      margin: 1.5rem 0 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      color: var(--color-text);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    /* ===== WORKS SECTION ===== */
+    .works {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-item {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: #1A1A1A;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(245, 211, 0, 0.2);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .rarity {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--color-gold);
+      color: var(--color-bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .carousel-content {
+      padding: 20px;
+    }
+
+    .carousel-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--color-gold);
+    }
+
+    /* ===== FOLLOW SECTION ===== */
+    .follow {
+      background: #121212;
+      text-align: center;
+    }
+
+    .follow-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .follow-text {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245, 211, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--color-gold);
+      transform: translateY(-3px);
+    }
+
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ===== JOB REQUEST SECTION ===== */
+    .job-request {
+      text-align: center;
+      background-color: #0a0a0a;
+      padding: 80px 0;
+    }
+    
+    .job-request-content {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .contact-method {
+      margin: 1.5rem 0;
+      font-size: 1.2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .contact-link {
+      color: var(--color-gold);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0A0A0A;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-powered {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    [data-animate] {
+      opacity: 0;
+    }
+
+    [data-animate="fade-up"] {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 767px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-flip {
+        margin-bottom: 15px;
+      }
+      
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <canvas id="particles"></canvas>
+    <div class="hero-content">
+      <div class="hero-icon" data-animate="fade-up" style="animation-delay: 0.2s">
+        <img src="https://data.cryptoninjapartners.com/images/22732.png" alt="Pontamaru_18" width="120" height="120" loading="lazy">
+      </div>
+      <h1 class="hero-title" data-animate="fade-up">ぽんたまる</h1>
+      <div class="hero-subtitle" data-animate="fade-up" style="animation-delay: 0.3s">
+        <p>FiNANCiE</p>
+        <p>CNPトレカ チャンネルリーダー</p>
+      </div>
+      <div class="hero-buttons">
+        <a href="https://x.com/Pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.4s" aria-label="X（旧Twitter）をフォロー">
+          <div class="btn-flip-front">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L19.336 1.154h-.436zm-2.67 19.693h2.039L6.486 3.24H4.298L16.23 20.846z"/>
+</svg>
+            <span style="margin-left: 8px">Xをフォロー</span>
+          </div>
+          <div class="btn-flip-back">
+            <span>フォローする</span>
+          </div>
+        </a>
+        <a href="https://note.com/pontamaru_18" class="btn-flip" data-animate="fade-up" style="animation-delay: 0.6s" aria-label="note記事を読む">
+          <div class="btn-flip-front">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span style="margin-left: 8px">noteを読む</span>
+          </div>
+          <div class="btn-flip-back">
+            <span>記事を読む</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-title" data-animate="fade-up">ABOUT</h2>
+      <div class="cards-container">
+        <a href="https://x.com/Pontamaru_18" class="card-link" target="_blank" rel="noopener noreferrer" data-animate="fade-up" style="animation-delay: 0.2s">
+          <div class="card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3>コミュニティ</h3>
+            <p>CNPトレカ愛好家のためのコミュニティを運営しています。参加希望者はDMでご連絡ください</p>
+            <div class="external-link-note">XでDMする</div>
+        </div>
+        <a href="https://note.com/pontamaru_18/n/n9114c7063f40" class="card-link" target="_blank" rel="noopener noreferrer" data-animate="fade-up" style="animation-delay: 0.4s">
+          <div class="card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="7" fill="var(--color-gold)" stroke="var(--color-gold)" stroke-width="1.5"></circle>
+                <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" fill="none" stroke="var(--color-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z" fill="none" stroke="var(--color-gold)" stroke-width="1.5"></path>
+                <path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z" fill="var(--color-gold)" fill-opacity="0.2" stroke="var(--color-gold)" stroke-width="1.5"></path>
+              </svg>
+            </div>
+            <h3>実績</h3>
+            <p>東京プレ大会優勝</p>
+            <div class="external-link-note">もっと見る</div>
+        </div>
+        <a href="https://note.com/pontamaru_18" class="card-link" target="_blank" rel="noopener noreferrer" data-animate="fade-up" style="animation-delay: 0.6s">
+          <div class="card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <h3>コンテンツ</h3>
+            <p>カードの評価からデッキ構築、大会レポートまで、トレーディングカードゲームに関する様々な情報を発信しています。初心者にも分かりやすい解説が好評です。</p>
+            <div class="external-link-note">noteを開く</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLLOW SECTION ===== -->
+  <section class="section follow" id="follow">
+    <div class="container">
+      <div class="follow-content">
+        <h2 class="section-title" data-animate="fade-up">Follow & Subscribe</h2>
+        <p class="follow-text" data-animate="fade-up" style="animation-delay: 0.2s">最新情報は X と note で発信中！</p>
+        <div class="social-links">
+          <a href="https://x.com/Pontamaru_18" class="social-link" aria-label="X（旧Twitter）をフォロー" data-animate="fade-up" style="animation-delay: 0.3s">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L19.336 1.154h-.436zm-2.67 19.693h2.039L6.486 3.24H4.298L16.23 20.846z"/>
+            </svg>
+          </a>
+          <a href="https://note.com/pontamaru_18" class="social-link" aria-label="noteをフォロー" data-animate="fade-up" style="animation-delay: 0.4s">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <line x1="8" y1="7" x2="12" y2="7"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+              <line x1="8" y1="17" x2="12" y2="17"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOB REQUEST SECTION ===== -->
+  <section class="section job-request" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-animate="fade-up">JOB REQUEST</h2>
+      <div class="job-request-content" data-animate="fade-up" style="animation-delay: 0.2s">
+        <div class="contact-method">
+          <a href="mailto:baseball.aim.koala@gmail.com" class="contact-link" style="display: flex; align-items: center; justify-content: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>baseball.aim.koala@gmail.com</span>
+          </a>
+        </div>
+        <div class="contact-method">
+          <a href="https://x.com/Pontamaru_18" class="contact-link" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--color-gold)" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px;">
+              <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L19.336 1.154h-.436zm-2.67 19.693h2.039L6.486 3.24H4.298L16.23 20.846z"/>
+            </svg>
+            <span>DM</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Pontamaru_18 All Rights Reserved.</p>
+      <p class="footer-powered">Powered by Windsurf</p>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('[data-animate]');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const animation = element.getAttribute('data-animate');
+            element.style.animationName = animation;
+            element.style.animationFillMode = 'forwards';
+            
+            // Remove the data-animate attribute to prevent re-animation
+            element.removeAttribute('data-animate');
+            observer.unobserve(element);
+          }
+        });
+      }, {
+        threshold: 0.3 // Trigger when 30% of the element is visible
+      });
+
+      // Observe all elements with data-animate attribute
+      animateElements.forEach(element => {
+        observer.observe(element);
+      });
+
+      // Particle Effect for Hero Section
+      const canvas = document.getElementById('particles');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Crown SVG Path
+        const crownPath = new Path2D('M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5 6 4.5v9z');
+        
+        // Particle class
+        class Particle {
+          constructor() {
+            this.reset();
+            this.y = Math.random() * canvas.height;
+          }
+          
+          reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = -20;
+            this.size = Math.random() * 15 + 5;
+            this.speed = Math.random() * 2 + 1;
+            this.opacity = Math.random() * 0.5 + 0.1;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 2 - 1;
+          }
+          
+          update() {
+            this.y += this.speed;
+            this.rotation += this.rotationSpeed;
+            
+            if (this.y > canvas.height + 20) {
+              this.reset();
+              this.y = -20;
+            }
+          }
+          
+          draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.scale(this.size / 24, this.size / 24);
+            
+            // Draw crown
+            ctx.fillStyle = `rgba(245, 211, 0, ${this.opacity})`;
+            ctx.fill(crownPath);
+            
+            ctx.restore();
+          }
+        }
+
+        // Create particles
+        const particles = [];
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+          // Stagger the initial positions
+          particles[i].y = Math.random() * canvas.height;
+        }
+
+        // Animation loop
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+          }
+          
+          requestAnimationFrame(animate);
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
+        
+        // Start animation
+        animate();
+      }
+    });
+  </script>
+</body>
+</html>
