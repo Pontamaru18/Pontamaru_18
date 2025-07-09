@@ -29,30 +29,14 @@
       scroll-behavior: smooth;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow-x: hidden;
-    }
-
     body {
       font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
       line-height: 1.6;
-      color: #fff;
-      background-color: #0a0a0a;
-      padding: 0 !important;
-      margin: 0 !important;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     h1, h2, h3, .heading {
@@ -165,7 +149,6 @@
 
     .hero {
       min-height: 100vh;
-      min-height: -webkit-fill-available;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -174,15 +157,13 @@
       text-align: center;
       padding: 0;
       margin: 0;
+      box-sizing: border-box;
       align-content: center;
       flex-wrap: wrap;
-      border: none;
+      border-top: none;
       background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2a2a2a, #1a1a1a);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
-      top: 0;
-      left: 0;
-      right: 0;
     }
 
     .hero::before {
@@ -195,21 +176,20 @@
       background: radial-gradient(circle at center, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
       z-index: 1;
       backdrop-filter: blur(2px);
-      margin: 0;
-      padding: 0;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 1000px;
-      width: 100%;
-      margin: 0;
-      padding: 20px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      align-items: center;
     }
     
     .hero-icon {
@@ -766,7 +746,7 @@
               </svg>
             </div>
             <h3>コミュニティ</h3>
-            <p>CNPトレカ愛好家のためのコミュニティを運営しています。参加希望者はDMでご連絡ください。（審査あり/無料）</p>
+            <p>CNPトレカ愛好家のためのコミュニティを運営しています。参加希望者はDMでご連絡ください</p>
             <div class="external-link-note">XでDMする</div>
         </div>
         <a href="https://note.com/pontamaru_18/n/n9114c7063f40" class="card-link" target="_blank" rel="noopener noreferrer" data-animate="fade-up" style="animation-delay: 0.4s">
