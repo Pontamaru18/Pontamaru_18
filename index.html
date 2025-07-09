@@ -675,6 +675,21 @@
       text-decoration: underline;
     }
 
+    /*—— セクション間の余白調整 ——*/
+    .about {
+      padding-bottom: 40px;    /* 下側だけ小さく */
+    }
+
+    .follow {
+      padding-top: 40px !important;  /* 上側だけ小さく。!important で .section の値を上書き */
+    }
+
+    /* モバイル幅でも同じ比率で縮める */
+    @media (max-width: 767px) {
+      .about { padding-bottom: 30px; }
+      .follow { padding-top: 30px !important; }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: #0A0A0A;
